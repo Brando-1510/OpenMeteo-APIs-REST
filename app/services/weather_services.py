@@ -1,0 +1,1 @@
+# Geocodificación y consulta meteorológica GET.
