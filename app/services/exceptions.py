@@ -46,17 +46,17 @@ class HttpStatusServiceError(ServiceError):
             message = (f"{service_name}: respuesta http inesperada {status_code}")
         super().__init__(message)
 
-    class InvalidJsonServiceError(ServiceError):
-        """Se produce cuando una API devuelve un contenido JSON inválido"""
-        pass
+class InvalidJsonServiceError(ServiceError):
+    """Se produce cuando una API devuelve un contenido JSON inválido"""
+    pass
 
-    class InvalidResponseServiceError(ServiceError):
-        """Se produce cuando la respuesta es válida, pero no contiene la estructura o los datos esperados."""
-        pass
+class InvalidResponseServiceError(ServiceError):
+    """Se produce cuando la respuesta es válida, pero no contiene la estructura o los datos esperados."""
+    pass
 
-    class RequestServiceError(ServiceError):
-        """Excepcion ante otro fallo controlado durante una solicitud HTTP"""
-        pass
+class RequestServiceError(ServiceError):
+    """Excepcion ante otro fallo controlado durante una solicitud HTTP"""
+    pass
 
 
 
