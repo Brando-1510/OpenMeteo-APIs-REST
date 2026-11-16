@@ -53,6 +53,25 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
+### Compilar recursos de Qt
+
+El proyecto utiliza resources.qrc para registrar las imágenes, iconos y recursos gráficos utilizados por la interfaz.
+
+Antes de ejecutar la aplicación por primera vez, genera el módulo de recursos de PySide6:
+
+```bash
+pyside6-rcc app/resources.qrc -o app/resources_rc.py
+```
+
+Solo es necesario volver a ejecutar este comando cuando se agreguen, eliminen o modifiquen referencias dentro de resources.qrc.
+
+### Ejecutar la aplicación
+
+Con el entorno virtual activado, las dependencias instaladas y los recursos compilados, ejecuta desde la raíz del proyecto:
+
+```bash
+python main.py
+```
 
 ### Testing y pruebas de servicios REST
 
