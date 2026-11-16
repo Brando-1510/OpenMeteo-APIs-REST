@@ -3,11 +3,22 @@
 from __future__ import annotations
 
 from datetime import datetime
+import json
 
 from PySide6.QtCore import QEvent, QSize, QThread, QTimer, Qt
-from PySide6.QtGui import QCloseEvent, QColor, QIcon, QPainter, QPixmap
+from PySide6.QtGui import (
+    QCloseEvent,
+    QColor,
+    QFontDatabase,
+    QIcon,
+    QPainter,
+    QPixmap,
+    QShowEvent,
+)
 from PySide6.QtWidgets import (
+    QDialog,
     QFrame,
+    QGraphicsBlurEffect,
     QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLabel,
@@ -61,6 +72,84 @@ class BackgroundWidget(QWidget):
         painter.end()
 
 
+class PostSuccessDialog(QDialog):
+    def __init__(self, result: RegistroResult, parent: QWidget) -> None:
+        super().__init__(parent)
+        self.setObjectName("postSuccessDialog")
+        self.setWindowFlags(
+            Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint
+        )
+        self.setWindowModality(Qt.WindowModality.WindowModal)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.resize(590, 500)
+        self.setMinimumSize(520, 420)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(26, 22, 26, 24)
+        layout.setSpacing(14)
+
+        header = QHBoxLayout()
+        header.setSpacing(12)
+
+        title = QLabel("POST realizado con éxito", self)
+        title.setObjectName("postSuccessTitle")
+        header.addWidget(title)
+        header.addStretch(1)
+
+        close_button = QPushButton("×", self)
+        close_button.setObjectName("postDialogCloseButton")
+        close_button.setAccessibleName("Cerrar resultado del POST")
+        close_button.setToolTip("Cerrar")
+        close_button.setFixedSize(34, 34)
+        close_button.clicked.connect(self.accept)
+        header.addWidget(close_button)
+        layout.addLayout(header)
+
+        description = QLabel(
+            f"HTTP {result.status_code} · ID {result.record_id}",
+            self,
+        )
+        description.setObjectName("postSuccessDescription")
+        layout.addWidget(description)
+
+        json_container = QFrame(self)
+        json_container.setObjectName("postJsonContainer")
+        json_layout = QVBoxLayout(json_container)
+        json_layout.setContentsMargins(1, 1, 1, 1)
+
+        payload = {
+            "sent": {
+                "city": result.city,
+                "temperature_c": result.temperature_c,
+                "observation": result.observation,
+            },
+            "response": result.response_data,
+        }
+        self.json_text = QPlainTextEdit(json_container)
+        self.json_text.setObjectName("postJsonText")
+        self.json_text.setReadOnly(True)
+        self.json_text.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
+        self.json_text.setFont(
+            QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
+        )
+        self.json_text.setPlainText(
+            json.dumps(payload, ensure_ascii=False, indent=2)
+        )
+        json_layout.addWidget(self.json_text)
+        layout.addWidget(json_container, 1)
+
+    def showEvent(self, event: QShowEvent) -> None:  # noqa: N802 - API Qt
+        super().showEvent(event)
+        parent = self.parentWidget()
+        if parent is None:
+            return
+        center = parent.mapToGlobal(parent.rect().center())
+        self.move(
+            center.x() - self.width() // 2,
+            center.y() - self.height() // 2,
+        )
+
+
 class MainWindow(QMainWindow):
 
     def __init__(self) -> None:
@@ -77,6 +166,9 @@ class MainWindow(QMainWindow):
         self._weather_worker: WeatherWorker | None = None
         self._registro_thread: QThread | None = None
         self._registro_worker: RegistroWorker | None = None
+        self._post_success_dialog: PostSuccessDialog | None = None
+        self._post_modal_overlay: QWidget | None = None
+        self._post_modal_blur: QGraphicsBlurEffect | None = None
         self._close_requested = False
 
         self._build_ui()
@@ -786,12 +878,48 @@ class MainWindow(QMainWindow):
         thread.start()
 
     def _handle_registro_result(self, result: RegistroResult) -> None:
-        self.request_status_label.setText(
-            f"Registro enviado correctamente (ID: {result.record_id})"
-        )
+        self.observation_input.clear()
+        self.request_status_label.setText("Registro enviado correctamente")
         self.global_status_label.setText(
             f"Registro de {result.city} enviado correctamente"
         )
+        self._show_post_success_dialog(result)
+
+    def _show_post_success_dialog(self, result: RegistroResult) -> None:
+        overlay = QWidget(self.central_widget)
+        overlay.setObjectName("postModalOverlay")
+        overlay.setGeometry(self.central_widget.rect())
+        overlay.show()
+        overlay.raise_()
+
+        blur = QGraphicsBlurEffect(self.central_widget)
+        blur.setBlurRadius(5.0)
+        self.central_widget.setGraphicsEffect(blur)
+
+        dialog = PostSuccessDialog(result, self)
+        dialog.finished.connect(self._restore_post_success_background)
+        self._post_modal_overlay = overlay
+        self._post_modal_blur = blur
+        self._post_success_dialog = dialog
+        dialog.open()
+
+    def _restore_post_success_background(self) -> None:
+        overlay = self._post_modal_overlay
+        self._post_modal_overlay = None
+        if overlay is not None:
+            overlay.hide()
+            overlay.deleteLater()
+
+        blur = self._post_modal_blur
+        self._post_modal_blur = None
+        if blur is not None and self.central_widget.graphicsEffect() is blur:
+            blur.setEnabled(False)
+            blur.deleteLater()
+
+        dialog = self._post_success_dialog
+        self._post_success_dialog = None
+        if dialog is not None:
+            dialog.deleteLater()
 
     def _handle_registro_error(self, error: Exception) -> None:
         message = self._service_error_message(error)
@@ -860,7 +988,7 @@ class MainWindow(QMainWindow):
             return "No fue posible completar la solicitud"
         return "Ocurrió un error inesperado"
 
-    def closeEvent(self, event: QCloseEvent) -> None:  # noqa: N802 - API Qt
+    def closeEvent(self, event: QCloseEvent) -> None:  
         threads = (self._weather_thread, self._registro_thread)
         if any(thread is not None and thread.isRunning() for thread in threads):
             self._close_requested = True

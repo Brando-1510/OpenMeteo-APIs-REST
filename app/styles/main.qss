@@ -428,3 +428,70 @@ QToolTip {
     color: #f7fbff;
     font-size: 12px;
 }
+
+/* ---------- POST success modal ------------------------------------------- */
+
+QWidget#postModalOverlay {
+    background-color: rgba(2, 12, 22, 112);
+}
+
+QDialog#postSuccessDialog {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(59, 91, 113, 248),
+        stop: 0.48 rgba(22, 55, 76, 250),
+        stop: 1 rgba(8, 31, 48, 252)
+    );
+    border: 1px solid rgba(221, 239, 250, 185);
+    border-radius: 22px;
+}
+
+QLabel#postSuccessTitle {
+    background: transparent;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+QLabel#postSuccessDescription {
+    background: transparent;
+    color: rgba(204, 232, 249, 220);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QFrame#postJsonContainer {
+    background-color: rgba(3, 22, 36, 220);
+    border: 1px solid rgba(183, 217, 238, 105);
+    border-radius: 14px;
+}
+
+QPlainTextEdit#postJsonText {
+    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    color: #dff3ff;
+    font-size: 13px;
+    selection-background-color: #287fc8;
+    selection-color: #ffffff;
+}
+
+QPushButton#postDialogCloseButton {
+    padding: 0px;
+    background-color: rgba(164, 195, 213, 32);
+    border: 1px solid rgba(218, 237, 248, 65);
+    border-radius: 17px;
+    color: rgba(247, 252, 255, 232);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+QPushButton#postDialogCloseButton:hover {
+    background-color: rgba(217, 79, 87, 180);
+    border-color: rgba(255, 211, 214, 135);
+}
+
+QPushButton#postDialogCloseButton:pressed {
+    background-color: rgba(184, 55, 63, 220);
+}
