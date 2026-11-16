@@ -68,17 +68,26 @@ QLabel#appTitle {
 QFrame#searchPanel,
 QFrame#footerPanel {
     background: qlineargradient(
-        x1: 0, y1: 0,
-        x2: 1, y2: 1,
-        stop: 0 rgba(235, 240, 246, 54),
-        stop: 0.28 rgba(169, 191, 207, 46),
-        stop: 0.62 rgba(75, 111, 134, 58),
-        stop: 1 rgba(30, 68, 91, 78)
+        spread: pad, 
+        x1: 0, y1: 0, 
+        x2: 1, y2: 1, 
+        stop: 0.00 rgba(58, 63, 75, 255),   /* Esquina superior izquierda más clara (luz) */
+        stop: 0.35 rgba(42, 46, 56, 255),   /* Tono medio */
+        stop: 0.50 rgba(52, 57, 68, 255),   /* Banda sutil de reflejo cruzado */
+        stop: 0.75 rgba(33, 36, 44, 255),   /* Zona más oscura */
+        stop: 1.00 rgba(45, 50, 60, 255)  
     );
     border: 1px solid rgba(225, 239, 248, 142);
     border-radius: 23px;
 }
 
+/* x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(235, 240, 246, 54),
+        stop: 0.28 rgba(169, 191, 207, 46),
+        stop: 0.62 rgba(75, 111, 134, 58),
+        stop: 1 rgba(30, 68, 91, 78)
+         */
 QFrame#weatherCard {
     background: qlineargradient(
         x1: 0, y1: 0,
