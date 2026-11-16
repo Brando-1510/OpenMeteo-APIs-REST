@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="images">
+    <file>assets/fondoimg.jpg</file>
+  </qresource>
+  <qresource prefix="weather">
+    <file>assets/weather/clear-day.svg</file>
+    <file>assets/weather/clear-night.svg</file>
+    <file>assets/weather/cloudy.svg</file>
+    <file>assets/weather/drizzle.svg</file>
+    <file>assets/weather/mostly-clear-day.svg</file>
+    <file>assets/weather/mostly-clear-day-drizzle.svg</file>
+    <file>assets/weather/mostly-clear-night.svg</file>
+    <file>assets/weather/mostly-clear-night-drizzle.svg</file>
+    <file>assets/weather/overcast.svg</file>
+    <file>assets/weather/rain.svg</file>
+    <file>assets/weather/thunderstorms.svg</file>
+    <file>assets/weather/thunderstorms-drizzle.svg</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>assets/clock-hour-3.svg</file>
+    <file>assets/cloud-lightning.svg</file>
+    <file>assets/location-06.svg</file>
+    <file>assets/rain-drop.svg</file>
+    <file>assets/search-02.svg</file>
+    <file>assets/solid-line-01.svg</file>
+    <file>assets/square-x.svg</file>
+    <file>assets/wind.svg</file>
+    <file>assets/x.svg</file>
+  </qresource>
+</RCC>
