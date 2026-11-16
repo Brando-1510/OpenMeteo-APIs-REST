@@ -204,7 +204,7 @@ class MainWindow(QMainWindow):
 
         self.scroll_content = QWidget()
         self.scroll_content.setObjectName("scrollContent")
-        self.scroll_content.setMinimumHeight(790)
+        self.scroll_content.setMinimumHeight(800)
         self.main_scroll.setWidget(self.scroll_content)
 
         scroll_layout = QVBoxLayout(self.scroll_content)
@@ -215,7 +215,7 @@ class MainWindow(QMainWindow):
         self.app_shell = QFrame(self.scroll_content)
         self.app_shell.setObjectName("appShell")
         self.app_shell.setMinimumWidth(900)
-        self.app_shell.setMinimumHeight(755)
+        self.app_shell.setMinimumHeight(765)
         self.app_shell.setSizePolicy(
             QSizePolicy.Policy.Expanding,
             QSizePolicy.Policy.Expanding,
@@ -268,7 +268,7 @@ class MainWindow(QMainWindow):
         self._set_label_pixmap(
             self.brand_icon,
             ":/weather/mostly-clear-day.svg",
-            QSize(42, 42),
+            QSize(46, 46),
         )
         layout.addWidget(self.brand_icon)
 
@@ -777,6 +777,7 @@ class MainWindow(QMainWindow):
         self.global_status_label.setText(
             "Estado de las solicitudes: esperando consulta"
         )
+
 
     def _start_weather_request(self) -> None:
         if self._weather_thread is not None:
