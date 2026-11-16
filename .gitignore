@@ -34,20 +34,12 @@ htmlcov/
 .dmypy.json
 
 # ==========================================
-# ARCHIVOS DE CONFIGURACIÓN Y SECRETOS
+# ARCHIVOS DE CONFIGURACIÓN 
 # ==========================================
 .env
 .env.*
 !.env.example
 
-# ==========================================
-# LOGS Y ARCHIVOS TEMPORALES
-# ==========================================
-*.log
-*.tmp
-*.bak
-*.swp
-*.swo
 
 # ==========================================
 # COMPILACIÓN Y DISTRIBUCIÓN
@@ -64,9 +56,3 @@ dist/
 .vscode/
 .qtcreator/
 
-# ==========================================
-# SISTEMA OPERATIVO
-# ==========================================
-.DS_Store
-Thumbs.db
-Desktop.ini

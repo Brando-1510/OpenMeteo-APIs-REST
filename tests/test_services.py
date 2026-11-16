@@ -110,6 +110,8 @@ class WeatherServiceTests(unittest.TestCase):
 
         self.assertEqual(result.city, "León")
         self.assertEqual(result.country, "Nicaragua")
+        self.assertEqual(result.latitude, 12.4379)
+        self.assertEqual(result.longitude, -86.8780)
         self.assertEqual(result.temperature_c, 29.5)
         self.assertEqual(result.humidity_percent, 70)
         self.assertEqual(result.condition, "Parcialmente nublado")

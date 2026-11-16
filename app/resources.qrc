@@ -1,30 +1,32 @@
 <RCC>
   <qresource prefix="images">
-    <file>assets/fondoimg.jpg</file>
+    <file alias="fondoimg.jpg">assets/fondoimg.jpg</file>
   </qresource>
+
   <qresource prefix="weather">
-    <file>assets/weather/clear-day.svg</file>
-    <file>assets/weather/clear-night.svg</file>
-    <file>assets/weather/cloudy.svg</file>
-    <file>assets/weather/drizzle.svg</file>
-    <file>assets/weather/mostly-clear-day.svg</file>
-    <file>assets/weather/mostly-clear-day-drizzle.svg</file>
-    <file>assets/weather/mostly-clear-night.svg</file>
-    <file>assets/weather/mostly-clear-night-drizzle.svg</file>
-    <file>assets/weather/overcast.svg</file>
-    <file>assets/weather/rain.svg</file>
-    <file>assets/weather/thunderstorms.svg</file>
-    <file>assets/weather/thunderstorms-drizzle.svg</file>
+    <file alias="clear-day.svg">assets/weather/clear-day.svg</file>
+    <file alias="clear-night.svg">assets/weather/clear-night.svg</file>
+    <file alias="cloudy.svg">assets/weather/cloudy.svg</file>
+    <file alias="drizzle.svg">assets/weather/drizzle.svg</file>
+    <file alias="mostly-clear-day.svg">assets/weather/mostly-clear-day.svg</file>
+    <file alias="mostly-clear-day-drizzle.svg">assets/weather/mostly-clear-day-drizzle.svg</file>
+    <file alias="mostly-clear-night.svg">assets/weather/mostly-clear-night.svg</file>
+    <file alias="mostly-clear-night-drizzle.svg">assets/weather/mostly-clear-night-drizzle.svg</file>
+    <file alias="overcast.svg">assets/weather/overcast.svg</file>
+    <file alias="rain.svg">assets/weather/rain.svg</file>
+    <file alias="thunderstorms.svg">assets/weather/thunderstorms.svg</file>
+    <file alias="thunderstorms-drizzle.svg">assets/weather/thunderstorms-drizzle.svg</file>
   </qresource>
+
   <qresource prefix="icons">
-    <file>assets/clock-hour-3.svg</file>
-    <file>assets/cloud-lightning.svg</file>
-    <file>assets/location-06.svg</file>
-    <file>assets/rain-drop.svg</file>
-    <file>assets/search-02.svg</file>
-    <file>assets/solid-line-01.svg</file>
-    <file>assets/square-x.svg</file>
-    <file>assets/wind.svg</file>
-    <file>assets/x.svg</file>
+    <file alias="clock-hour-3.svg">assets/clock-hour-3.svg</file>
+    <file alias="cloud-lightning.svg">assets/cloud-lightning.svg</file>
+    <file alias="location-06.svg">assets/location-06.svg</file>
+    <file alias="rain-drop.svg">assets/rain-drop.svg</file>
+    <file alias="search-02.svg">assets/search-02.svg</file>
+    <file alias="solid-line-01.svg">assets/solid-line-01.svg</file>
+    <file alias="square-x.svg">assets/square-x.svg</file>
+    <file alias="wind.svg">assets/wind.svg</file>
+    <file alias="x.svg">assets/x.svg</file>
   </qresource>
 </RCC>

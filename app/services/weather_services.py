@@ -85,6 +85,8 @@ class WeatherData:
     city: str
     region: str | None
     country: str
+    latitude: float
+    longitude: float
     temperature_c: float
     humidity_percent: int
     wind_speed_kmh: float
@@ -96,7 +98,7 @@ class WeatherData:
 
 
 class WeatherService:
-    """Gestiona las consultas GET necesarias para obtener el clima actual."""
+    """ gwstiona las consultas GET necesarias para obtener el clima actual."""
     def __init__(self, timeout: float = DEFAULT_TIMEOUT, session: requests.Session | None = None) -> None:
         """
         Inicializa el servicio con un tiempo máximo de espera.
@@ -135,7 +137,7 @@ class WeatherService:
         # Open-Meteo necesita coordenadas para consultar el clima, por lo que primero se resuelve el nombre de la ciudad.
         location = self._search_city(city_name)
 
-        # Una vez obtenidas las coordenadas, se consultan las condiciones meteorológicas actuales.
+        # una vez obtenidas las coordenadas, se consultan las condiciones meteorológicas actuales.
         weather_json = self._fetch_current_weather(location)
 
         # La interfaz recibe un objeto estable y procesado, nunca el JSON original de la API.
@@ -152,8 +154,6 @@ class WeatherService:
         - Deserialización JSON.
         - Traducción de excepciones de Requests.
         """
-
-        # Contexto de la operación para los mensajes de error
         service_context = f"{SERVICE_NAME} ({operation})"
 
         try:
@@ -193,7 +193,6 @@ class WeatherService:
             ) from error
 
         except requests.exceptions.HTTPError as error:
-            # Conservamos el código HTTP original para poder diferenciar errores 4xx, 5xx y otros estados.
             status_code = (error.response.status_code if error.response is not None else None)
 
             raise HttpStatusServiceError(service_context, status_code) from error
@@ -257,7 +256,7 @@ class WeatherService:
         country_value = first_result.get("country")
         region_value = first_result.get("admin1")
 
-        # País y región pueden no estar disponibles para determinados resultados de geocodificación.
+        # pais y region pueden no estar disponibles para determinados resultados de geocodificación.
         country = (
             country_value.strip() if isinstance(country_value, str) and country_value.strip() else "País no identificado"
         )
@@ -334,7 +333,6 @@ class WeatherService:
 
         weather_code = current.get("weather_code")
 
-        # bool también es int en Python, por eso debe excluirse.
         if (isinstance(weather_code, bool) or not isinstance(weather_code, int)):
             raise InvalidResponseServiceError("El código meteorológico recibido no es válido")
 
@@ -364,6 +362,8 @@ class WeatherService:
             city=location.name,
             region=location.region,
             country=location.country,
+            latitude=location.latitude,
+            longitude=location.longitude,
             temperature_c=temperature,
             humidity_percent=round(humidity),
             wind_speed_kmh=wind_speed,
@@ -394,7 +394,7 @@ class WeatherService:
     @staticmethod
     def _get_weather_description(weather_code: int) -> str:
         """
-        Traduce un código meteorológico WMO a una descripción comprensible.
+        traduce un código meteorológico WMO a una descripción comprensible.
         """
 
         # Si Open-Meteo incorpora un código que todavía no tenemos registrado, la aplicación continúa funcionando.

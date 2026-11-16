@@ -1,0 +1,430 @@
+/* ============================================================================
+   OpenMeteo APIs REST — Precision Glass Theme
+   PySide6 / Qt Style Sheets
+   ============================================================================ */
+
+/* ---------- Base ---------------------------------------------------------- */
+
+* {
+    font-family: "Segoe UI";
+    color: #f7fbff;
+    outline: none;
+}
+
+QMainWindow#mainWindow,
+QWidget#centralWidget,
+QScrollArea#mainScrollArea,
+QWidget#scrollViewport,
+QWidget#scrollContent,
+QWidget#contentWidget {
+    background: transparent;
+    border: none;
+}
+
+/* ---------- Main frosted shell ------------------------------------------- */
+
+QFrame#appShell {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(222, 230, 239, 40),
+        stop: 0.18 rgba(104, 132, 151, 66),
+        stop: 0.55 rgba(25, 58, 78, 126),
+        stop: 1 rgba(8, 31, 48, 158)
+    );
+    border: 1px solid rgba(226, 240, 249, 140);
+    border-radius: 28px;
+}
+
+/* ---------- Header -------------------------------------------------------- */
+
+QWidget#titleBar {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 0,
+        stop: 0 rgba(238, 239, 245, 72),
+        stop: 0.23 rgba(173, 187, 199, 56),
+        stop: 0.60 rgba(73, 112, 136, 70),
+        stop: 1 rgba(45, 88, 113, 88)
+    );
+    border: 1px solid rgba(229, 241, 249, 94);
+    border-radius: 21px;
+}
+
+QLabel#brandIcon {
+    background: transparent;
+    border: none;
+}
+
+QLabel#appTitle {
+    background: transparent;
+    color: #fbfdff;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+/* ---------- Glass cards --------------------------------------------------- */
+
+QFrame#searchPanel,
+QFrame#footerPanel {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(235, 240, 246, 54),
+        stop: 0.28 rgba(169, 191, 207, 46),
+        stop: 0.62 rgba(75, 111, 134, 58),
+        stop: 1 rgba(30, 68, 91, 78)
+    );
+    border: 1px solid rgba(225, 239, 248, 142);
+    border-radius: 23px;
+}
+
+QFrame#weatherCard {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(235, 226, 232, 62),
+        stop: 0.28 rgba(186, 199, 211, 52),
+        stop: 0.58 rgba(91, 121, 142, 58),
+        stop: 1 rgba(37, 75, 98, 82)
+    );
+    border: 1px solid rgba(229, 241, 249, 151);
+    border-radius: 24px;
+}
+
+QFrame#postCard {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 rgba(218, 231, 240, 58),
+        stop: 0.34 rgba(156, 183, 201, 48),
+        stop: 0.68 rgba(69, 105, 128, 62),
+        stop: 1 rgba(30, 67, 90, 84)
+    );
+    border: 1px solid rgba(229, 241, 249, 151);
+    border-radius: 24px;
+}
+
+/* ---------- Transparent structural widgets ------------------------------- */
+
+QWidget#currentWeatherWidget,
+QWidget#weatherMetricsWidget,
+QWidget#coordinatesWidget,
+QWidget#humidityMetric,
+QWidget#windMetric,
+QWidget#observationMetric,
+QWidget#requestState {
+    background: transparent;
+    border: none;
+}
+
+/* ---------- Eyebrows ------------------------------------------------------ */
+
+QLabel#searchCaption,
+QLabel#weatherEyebrow,
+QLabel#postEyebrow {
+    background: transparent;
+    color: rgba(248, 252, 255, 228);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ---------- Search -------------------------------------------------------- */
+
+QLineEdit#locationInput {
+    padding: 0px 21px;
+    background-color: rgba(5, 29, 47, 190);
+    border: 1px solid rgba(194, 221, 238, 132);
+    border-radius: 15px;
+    color: #fbfdff;
+    font-size: 19px;
+    placeholder-text-color: rgba(220, 233, 242, 125);
+    selection-background-color: #268df0;
+    selection-color: #ffffff;
+}
+
+QLineEdit#locationInput:hover {
+    border-color: rgba(216, 238, 252, 176);
+}
+
+QLineEdit#locationInput:focus {
+    background-color: rgba(4, 27, 44, 218);
+    border: 1px solid rgba(101, 184, 255, 230);
+}
+
+QPushButton#searchButton {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 0, y2: 1,
+        stop: 0 #4da9ff,
+        stop: 1 #1b7ddd
+    );
+    border: 1px solid rgba(177, 225, 255, 194);
+    border-radius: 15px;
+    padding: 0px;
+}
+
+QPushButton#searchButton:hover {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 0, y2: 1,
+        stop: 0 #66b8ff,
+        stop: 1 #2b8cec
+    );
+    border-color: rgba(221, 242, 255, 230);
+}
+
+QPushButton#searchButton:pressed {
+    background-color: #176fc5;
+}
+
+/* ---------- Weather ------------------------------------------------------- */
+
+QLabel#cityLabel {
+    background: transparent;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+QLabel#currentConditionsLabel {
+    background: transparent;
+    color: rgba(241, 247, 251, 214);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+QLabel#weatherIcon,
+QLabel#coordinatesIcon,
+QLabel#humidityMetricIcon,
+QLabel#windMetricIcon,
+QLabel#observationMetricIcon,
+QLabel#getServiceIcon,
+QLabel#postServiceIcon {
+    background: transparent;
+    border: none;
+}
+
+QLabel#temperatureLabel {
+    background: transparent;
+    color: #ffffff;
+    font-size: 44px;
+    font-weight: 700;
+}
+
+QLabel#conditionLabel {
+    background: transparent;
+    color: rgba(247, 251, 254, 229);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+QLabel#humidityMetricTitle,
+QLabel#windMetricTitle,
+QLabel#observationMetricTitle {
+    background: transparent;
+    color: rgba(242, 248, 252, 213);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+QLabel#humidityMetricValue,
+QLabel#windMetricValue,
+QLabel#observationMetricValue {
+    background: transparent;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+QLabel#coordinatesLabel {
+    background: transparent;
+    color: rgba(231, 241, 248, 203);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* ---------- POST ---------------------------------------------------------- */
+
+QLabel#postTitle {
+    background: transparent;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+QLabel#postCityLabel,
+QLabel#postTemperatureLabel,
+QLabel#observationLabel {
+    background: transparent;
+    color: rgba(244, 249, 253, 218);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+QLabel#apiBadge {
+    background-color: rgba(0, 132, 76, 220);
+    border: 1px solid rgba(75, 226, 157, 170);
+    border-radius: 14px;
+    color: #ecfff6;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+QPlainTextEdit#observationInput {
+    padding: 13px 15px;
+    background-color: rgba(5, 29, 47, 194);
+    border: 1px solid rgba(195, 222, 239, 136);
+    border-radius: 15px;
+    color: #f9fcff;
+    font-size: 15px;
+    placeholder-text-color: rgba(219, 233, 242, 132);
+    selection-background-color: #268df0;
+    selection-color: #ffffff;
+}
+
+QPlainTextEdit#observationInput:hover {
+    border-color: rgba(215, 239, 253, 177);
+}
+
+QPlainTextEdit#observationInput:focus {
+    background-color: rgba(4, 27, 44, 220);
+    border: 1px solid rgba(101, 184, 255, 230);
+}
+
+QPushButton#submitButton {
+    padding: 0px 20px;
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 0, y2: 1,
+        stop: 0 #4aa8ff,
+        stop: 1 #1b7ee2
+    );
+    border: 1px solid rgba(177, 225, 255, 192);
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QPushButton#submitButton:hover {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 0, y2: 1,
+        stop: 0 #63b7ff,
+        stop: 1 #2a8ceb
+    );
+    border-color: rgba(220, 242, 255, 228);
+}
+
+QPushButton#submitButton:pressed {
+    background-color: #176fc5;
+}
+
+QPushButton#submitButton:disabled {
+    background-color: rgba(73, 117, 150, 120);
+    border-color: rgba(184, 212, 231, 70);
+    color: rgba(255, 255, 255, 125);
+}
+
+QLabel#requestDotOne,
+QLabel#requestDotTwo,
+QLabel#requestDotThree {
+    background: transparent;
+    color: rgba(188, 218, 237, 180);
+    font-size: 11px;
+}
+
+QLabel#requestStatusLabel {
+    background: transparent;
+    color: rgba(239, 247, 252, 210);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* ---------- Footer -------------------------------------------------------- */
+
+QLabel#getServiceLabel,
+QLabel#postServiceLabel {
+    background: transparent;
+    color: #f8fbff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+QLabel#globalStatusIcon {
+    background: transparent;
+    color: #bce6ff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+QLabel#globalStatusLabel {
+    background: transparent;
+    color: rgba(233, 243, 250, 207);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* ---------- Separators ---------------------------------------------------- */
+
+QFrame#titleSeparator,
+QFrame#weatherMainSeparator,
+QFrame#metricSeparatorOne,
+QFrame#metricSeparatorTwo {
+    min-width: 1px;
+    max-width: 1px;
+    border: none;
+    background-color: rgba(232, 243, 250, 96);
+}
+
+QFrame#weatherMetricsSeparator,
+QFrame#weatherCoordinatesSeparator,
+QFrame#postSeparator,
+QFrame#footerSeparator {
+    min-height: 1px;
+    max-height: 1px;
+    border: none;
+    background-color: rgba(232, 243, 250, 96);
+}
+
+/* ---------- Scrollbar ----------------------------------------------------- */
+
+QScrollBar:vertical {
+    width: 8px;
+    margin: 8px 2px 8px 0px;
+    background: transparent;
+}
+
+QScrollBar::handle:vertical {
+    min-height: 44px;
+    background-color: rgba(213, 232, 244, 86);
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: rgba(224, 240, 250, 137);
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+/* ---------- Tooltips ------------------------------------------------------ */
+
+QToolTip {
+    padding: 6px 9px;
+    background-color: rgba(8, 31, 48, 238);
+    border: 1px solid rgba(195, 222, 239, 140);
+    border-radius: 7px;
+    color: #f7fbff;
+    font-size: 12px;
+}
