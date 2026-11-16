@@ -1,11 +1,41 @@
-## Crear entorno virtual
+ <div align="center">
+
+# Consultor de Clima y Pronóstico
+
+**Cliente REST de Escritorio**
+
+Conecta servicios meteorológicos, procesa información y convierte respuestas REST en datos útiles desde una aplicación de escritorio.
+
+Consultor de Clima y Pronóstico es una aplicación de escritorio desarrollada en Python que demuestra la integración con servicios web mediante el consumo de APIs REST. Permite consultar información meteorológica de una ciudad, procesar los datos recibidos en formato JSON y enviar registros mediante solicitudes HTTP.
+
+El proyecto integra Open-Meteo para la búsqueda geográfica y consulta de condiciones meteorológicas actuales, y JSONPlaceholder para simular el envío y registro de información mediante solicitudes POST.
+
+Su desarrollo pone énfasis en la comunicación entre aplicaciones y servicios externos, la validación de respuestas, el manejo de errores HTTP y la separación de responsabilidades entre la interfaz gráfica y la lógica de comunicación.
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PySide6](https://img.shields.io/badge/PySide6-Desktop_UI-41CD52?style=for-the-badge&logo=qt&logoColor=white)
+![Qt Designer](https://img.shields.io/badge/Qt_Designer-UI_Design-41CD52?style=for-the-badge&logo=qt&logoColor=white)
+![Requests](https://img.shields.io/badge/Requests-HTTP_Client-2CA5E0?style=for-the-badge)
+![REST API](https://img.shields.io/badge/REST-API-6C63FF?style=for-the-badge)
+![JSON](https://img.shields.io/badge/JSON-Data_Exchange-000000?style=for-the-badge&logo=json&logoColor=white)
+![Unittest](https://img.shields.io/badge/Unittest-Testing-FFCA28?style=for-the-badge&logo=python&logoColor=black)
+![Open--Meteo](https://img.shields.io/badge/Open--Meteo-Weather_API-159E80?style=for-the-badge)
+![JSONPlaceholder](https://img.shields.io/badge/JSONPlaceholder-Testing_API-323330?style=for-the-badge&logo=json&logoColor=white)
+
+</div>
+
+## Intrucciones de instalación 
+
+### Crear entorno virtual
 Creamos el entorno virtual
 ```bash
 python -m venv venv
 ```
 
 
-## Activar entorno 
+### Activar entorno 
 
 Activamos el entonro virtual antes de instalar dependencias:
 
@@ -14,7 +44,7 @@ Activamos el entonro virtual antes de instalar dependencias:
 ```
 
 
-## Instalar dependencias
+### Instalar dependencias
 
 Ejecuta para actualizar el gestor de paquetes e instalar las librerías del proyecto:
 
@@ -24,18 +54,18 @@ python -m pip install -r requirements.txt
 ```
 
 
-## Testing y pruebas de servicios REST
+### Testing y pruebas de servicios REST
 
 El proyecto utiliza el módulo `unittest` de Python para verificar
 el funcionamiento de sus servicios HTTP.
 
-### 1. Requisitos previos
+#### 1. Requisitos previos
 
 - Entorno virtual activado.
 - Dependencias instaladas.
 - Ejecutar los comandos desde la raíz del proyecto.
 
-### 2. Ejecutar pruebas unitarias
+#### 2. Ejecutar pruebas unitarias
 
 Para ejecutar todas las pruebas automatizadas:
 
@@ -57,7 +87,7 @@ Se comprueban:
 - Respuestas JSON inválidas.
 - Validación de datos de entrada.
 
-### 3. Ejecutar pruebas de integración
+#### 3. Ejecutar pruebas de integración
 
 Para comprobar la comunicación con las APIs reales:
 
@@ -73,7 +103,7 @@ Este comando realiza:
 
 Esta prueba requiere conexión a Internet.
 
-### 4. APIs utilizadas
+#### 4. APIs utilizadas
 
 | Servicio | Endpoint | Método |
 |---|---|---|
@@ -81,7 +111,7 @@ Esta prueba requiere conexión a Internet.
 | Open-Meteo Weather | api.open-meteo.com/v1/forecast | GET |
 | JSONPlaceholder | jsonplaceholder.typicode.com/posts | POST |
 
-### 5. Consideraciones
+#### 5. Consideraciones
 
 JSONPlaceholder es una API de pruebas.
 Las solicitudes POST simulan la creación de recursos,
@@ -90,7 +120,7 @@ pero los registros no se almacenan permanentemente.
 Las pruebas unitarias no necesitan Internet.
 Las pruebas de integración sí dependen de los servicios externos.
 
-### 6. Resultado esperado
+#### 6. Resultado esperado
 
 Las pruebas unitarias deben finalizar con el resultado:
 
